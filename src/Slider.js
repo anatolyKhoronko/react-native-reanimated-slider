@@ -22,8 +22,11 @@ const {
   interpolate,
   multiply,
   block,
-  or
+  or,
+  min,
 } = Animated;
+
+const reanimatedMin = min;
 
 const BUBBLE_WIDTH = 100;
 
@@ -216,7 +219,7 @@ class Slider extends React.Component<Props> {
         ]
       )
     ]);
-    this.thumb = sub(this.seek, this.props.thumbOffset);
+    this.thumb = reanimatedMin(sub(this.seek, this.props.thumbOffset), sub(this.width, 30));
     this.spring_state = {
       finished: new Value(0),
       velocity: new Value(0),
@@ -355,7 +358,7 @@ class Slider extends React.Component<Props> {
           <Animated.View
             style={{
               position: "absolute",
-              [I18nManager.isRTL ? "right" : "left"]: -42,
+              [I18nManager.isRTL ? "right" : "left"]: -37,
               width: BUBBLE_WIDTH,
               opacity: this.height,
               transform: [
@@ -363,7 +366,7 @@ class Slider extends React.Component<Props> {
                   translateY: ballonTranslateY
                 },
                 {
-                  translateX: this.clamped_x
+                  translateX: this.thumb
                 },
                 {
                   scale: this.height
