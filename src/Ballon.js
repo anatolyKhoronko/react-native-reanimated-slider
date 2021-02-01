@@ -1,10 +1,6 @@
 import React from "react";
 import { TextInput, View } from "react-native";
 import Animated from "react-native-reanimated";
-import type {
-  ViewStyleProp,
-  TextStyleProp,
-} from 'react-native/Libraries/StyleSheet/StyleSheet';
 
 const BUBBLE_WIDTH = 100;
 
@@ -12,24 +8,14 @@ type Props = {
   /**
    * background color of the ballon
    */
-  color: string,
-
-  /**
-   * the style for the container view
-   */
-  containerStyle:ViewStyleProp,
-
-  /**
-   * the style for the TextInput inside ballon
-   */
-  textStyle: TextStyleProp,
+  color: string
 };
 /**
  * a component to show text inside a ballon
  */
 export default class Ballon extends React.Component<Props> {
   static defaultProps = {
-    color: "#f3f"
+    color: "transparents"
   };
   text = React.createRef();
 
@@ -48,14 +34,14 @@ export default class Ballon extends React.Component<Props> {
         <Animated.View
           style={{
             padding: 2,
-            backgroundColor: color,
+            backgroundColor: 'white',
             borderRadius: 5,
             maxWidth: BUBBLE_WIDTH
           }}
         >
           <TextInput
             ref={this.text}
-            style={[{ paddingVertical: -25 }, textStyle]}
+            style={[{ paddingVertical: 0}, textStyle]}
             text={""}
           />
         </Animated.View>
@@ -65,7 +51,7 @@ export default class Ballon extends React.Component<Props> {
             height: 10,
             borderWidth: 5,
             borderColor: "transparent",
-            borderTopColor: color,
+            borderTopColor: 'white',
 
             backgroundColor: "transparent",
             flexDirection: "row"
