@@ -28,19 +28,8 @@ const {
 const BUBBLE_WIDTH = 100;
 
 type Props = {
-  /**
-   * color to fill the progress in the seekbar
-   */
   minimumTrackTintColor?: string,
-
-  /**
-   * color to fill the background in the seekbar
-   */
   maximumTrackTintColor?: string,
-
-  /**
-   * color to fill the cache in the seekbar
-   */
   cacheTrackTintColor?: string,
   /**
    * style for the container view
@@ -321,11 +310,11 @@ class Slider extends React.Component<Props> {
           <Animated.View
             style={{
               width: "100%",
-              height: 5,
+              height: 15,
               borderRadius: 2,
               borderColor: borderColor,
               overflow: "hidden",
-              borderWidth: 1,
+              // borderWidth: 1,
               backgroundColor: maximumTrackTintColor
             }}>
             <Animated.View
@@ -354,17 +343,19 @@ class Slider extends React.Component<Props> {
               position: "absolute"
             }}>
             {thumbRenderer({
-              backgroundColor: minimumTrackTintColor,
-              height: 15,
-              width: 15,
-              borderRadius: 30
+              backgroundColor: maximumTrackTintColor,
+              height: 30,
+              width: 30,
+              borderRadius: 15,
+              borderWidth: 7,
+              borderColor: '#75B700',
             })}
           </Animated.View>
 
           <Animated.View
             style={{
               position: "absolute",
-              [I18nManager.isRTL ? "right" : "left"]: -50,
+              [I18nManager.isRTL ? "right" : "left"]: -42,
               width: BUBBLE_WIDTH,
               opacity: this.height,
               transform: [
